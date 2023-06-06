@@ -5,7 +5,7 @@ import { removeFromCart } from '@/store/cartSlice';
 import { updateCart } from '@/store/cartSlice';
 import Link from 'next/link';
 const CartItem = ({cartProduct}) => {
-  console.log('cartItem', cartProduct);
+
   const dispatch = useDispatch();
   const updateCartItem = (e, key)=>{
     let payload = {

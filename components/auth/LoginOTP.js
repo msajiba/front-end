@@ -56,7 +56,6 @@ const LoginOTP = () => {
           toast.success("OTP sent successfully!");
         })
         .catch((error) => {
-          console.log("sign in -->", error);
           setLoading(false);
         });
     }

@@ -1,42 +1,22 @@
 import React, { useEffect, useState } from "react";
-
-import { fetchDataFromApi, getData } from "@/utils/api";
-import useSWR from "swr";
-import { useRouter } from "next/router";
+import {  getData } from "@/utils/api";
 import ProductCard from "@/components/product/ProductCard";
 import Link from "next/link";
-import BestDeal from "@/components/home/ProductCarousel";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import ProductCarousel from "@/components/home/ProductCarousel";
 import axios from "axios";
 import Image from "next/image";
-const maxResult = 25;
 
 const Shop = ({products }) => {
-console.log(products);
-  const [pageIndex, setPageIndex] = useState(1);
-  const { query } = useRouter();
+  const [categories, setCategories] = useState(null);
 
-  useEffect(() => {
-    setPageIndex(1);
-  }, [query]);
 
-  const { data, error, isLoading } = useSWR(
-    "/api/admin/product/getAll",
-    getData,
-    {
-      fallbackData: products,
-    }
-  );
-
-    const [categories, setCategories] = useState(null);
   useEffect(() => {
     fetchCategories();
   }, []);
   const fetchCategories = async () => {
     const {data} = await axios.get("/api/admin/category/getAll");
-    console.log(data);
+    
     setCategories(data);
   };
 
@@ -90,7 +70,7 @@ console.log(products);
             <div className="products mb-3">
               <div className="row justify-content-center">
               {products?.products?.map((product) => (
-          <div key={product?.id} className="col-6 col-md-4 col-lg-4 col-xl-3">
+          <div key={product?._id} className="col-6 col-md-4 col-lg-4 col-xl-3">
             <ProductCard key={product?.id} data={product} showToastMsg={showToastMsg} />
           </div>
         ))}

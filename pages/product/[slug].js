@@ -11,7 +11,7 @@ import LatestProduct from "@/components/home/LatestProduct";
 import RelatedProducts from "@/components/product/RelatedProduct";
 
 const ProductDetails = ({ product }) => {
-  console.log(product);
+  
   const p = product?.product;
   const dispatch = useDispatch();
   const showToastMessage =(data)=>{
@@ -28,7 +28,7 @@ const ProductDetails = ({ product }) => {
   }
 
   const [quantity, setQuantity] = useState(1);
-  // console.log(quantity);
+  
   return (
     <main className="main">
       <nav aria-label="breadcrumb" className="breadcrumb-nav border-0 mb-0">

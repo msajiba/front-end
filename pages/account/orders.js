@@ -29,7 +29,6 @@ const Orders = () => {
           token: `Bearer ${jwt}`,
         }, 
       });
-      console.log(order.data.order.length);
       setOrders(order);
     } 
     // else {
@@ -43,7 +42,7 @@ const Orders = () => {
     getOrders();
   }, []);
 
-  // console.log(orders);
+  
   if (!user) {
     router.push("/account/login");
     return null;
@@ -147,7 +146,7 @@ const Orders = () => {
                 <div className="row p-2 ">
                   {orders?.data?.order?.length == 0 && <h4>No Orders yet</h4>}
                   {orders?.data?.order?.map((order, index) => (
-                    <div className="col-md-6">
+                    <div key={index} className="col-md-6">
                       <div
                         className="card p-2 m-2"
                         style={{ border: "2px dotted black" }}
@@ -234,7 +233,7 @@ const Orders = () => {
                                       <tbody>
                                         {order?.products?.map(
                                           (product) => (
-                                            <tr className="summary-subtotal">
+                                            <tr key={product?._id} className="summary-subtotal">
                                               <td>{product?.title}</td>
                                               <td>{product?.quantityPrice}</td>
                                               <td>{product?.quantity}</td>

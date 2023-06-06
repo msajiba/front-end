@@ -12,22 +12,21 @@ const Search = () => {
 
   const fetchProducts = async () => {
     const { data } = await axios.get("/api/admin/product/getAll");
-    // console.log(data);
+;
     const productData = data.products.map((p) => ({
       title: p?.title,
       price: p?.price,
       slug: p?.slug,
       url: p?.image,
     }));
-    // console.log(data);
-    // console.log("search", productData);
+
     setProducts(productData);
   };
   const filterChangeHandler = (e) => {
     const searchedWord = e.target.value;
     setQuery(e.target.value);
 
-    // console.log("seaarchedWord", filterData);
+
     const newFilter = products.filter((value) => {
       return value.title.toLowerCase().includes(searchedWord.toLowerCase());
     });
@@ -118,7 +117,7 @@ const Search = () => {
               style={{ touchAction: "pan-y" }}
             >
               {filterData?.map((p) => (
-                <li key={p?.id} className="megamenu-container" onClick={clearInputHandler}>
+                <li key={p?._id} className="megamenu-container" onClick={clearInputHandler}>
                   <Link
                     className="d-flex align-items-center"
                     href={`/product/${p?.slug}`}

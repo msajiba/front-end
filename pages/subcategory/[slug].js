@@ -13,7 +13,7 @@ import Image from "next/image";
 const maxResult = 3;
 
 const SubCategoryProduct = ({ subCategory, products, slug }) => {
-    console.log(products);
+    
     const [pageIndex, setPageIndex] = useState(1);
     const { query } = useRouter();
   
@@ -91,7 +91,7 @@ const SubCategoryProduct = ({ subCategory, products, slug }) => {
             <div className="products mb-3">
               <div className="row justify-content-center">
               {products?.products?.map((product) => (
-          <div key={product?.id} className="col-6 col-md-4 col-lg-4 col-xl-3">
+          <div key={product?._id} className="col-6 col-md-4 col-lg-4 col-xl-3">
             <ProductCard key={product?.id} data={product} showToastMsg={showToastMsg} />
           </div>
         ))}

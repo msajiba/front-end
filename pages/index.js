@@ -18,7 +18,6 @@ import Blog from "@/components/home/Blog";
 
 export default function Home({ products,categories ,blogs,mainSlider,latestProducts,discountedProducts,bestDealProducts}) {
 
-console.log(bestDealProducts);
 const showToastMessage =(data)=>{
   toast.success(data.msg, {
     position: "top-right",
@@ -64,7 +63,7 @@ export async function getServerSideProps(context) {
   const categories = await getData("/api/admin/category/getAll");
   const blogs = await getData("/api/admin/blog/getAll");
   const mainSlider = await getData("/api/admin/slider/getAll");
-  // const latestProduct = await fetchDataFromApi(`/api/products?populate=*&sort=id:desc&?pagination[page]=1&pagination[pageSize]=10`);
+
   const latestProducts = await getData("/api/admin/product/getAll");
   const discountedProducts = await getData("/api/admin/product/discounted");
   const bestDealProducts = await getData("/api/admin/product/bestDeal");

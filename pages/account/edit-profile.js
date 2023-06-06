@@ -30,7 +30,7 @@ const EditProfile = () => {
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const router = useRouter();
   const user = useSelector((state) => state.user.currentUser);
-  // console.log(user._id);
+
   
   const provider = useSelector((state) => state.user.provider);
   const jwt = useSelector((state) => state.user.jwt);
@@ -96,7 +96,7 @@ const EditProfile = () => {
         progress: undefined,
         theme: "dark",
       });
-      console.log(updatedProfileData);
+
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -140,7 +140,7 @@ const EditProfile = () => {
       setPassword("");
       setCurrentPassword("");
       setPasswordConfirmation("");
-      console.log("res", res);
+
     } catch (error) {
       toast.error(error?.response?.data?.error, {
         position: "top-right",

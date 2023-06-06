@@ -9,15 +9,7 @@ import { Keyboard, Mousewheel, Navigation } from "swiper";
 import Image from "next/image";
 import Link from "next/link";
 const HomeCategory = ({ categories }) => {
-  // console.log(categories);
-  //     const [categories, setCategories] = useState(null);
-  //   useEffect(() => {
-  //     fetchCategories();
-  //   }, []);
-  //   const fetchCategories = async () => {
-  //     const { data } = await fetchDataFromApi("/api/categories?populate=*");
-  //     setCategories(data);
-  //   };
+ 
   return (
     <>
       <div className="container banner-group-1">

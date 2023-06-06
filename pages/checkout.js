@@ -29,7 +29,7 @@ const checkout = () => {
   const router = useRouter();
 
   const user = useSelector((state) => state.user.currentUser);
-  console.log(user._id);
+
 
   const jwt = useSelector((state) => state.user.jwt);
 
@@ -49,7 +49,7 @@ const checkout = () => {
         token: `Bearer ${jwt}`,
       },
     });
-    console.log('userInfoCheckout', userInfo)
+   
       setName(userInfo?.data?.name);
       setEmail(userInfo?.data?.email);
       setPhone(userInfo?.data?.phone);
@@ -84,7 +84,7 @@ const checkout = () => {
   const subTotal = useMemo(() => {
     return cartProducts.reduce((total, val) => total + val.price, 0);
   }, [cartProducts]);
-  console.log(cartProducts);
+
   const productData = cartProducts.map((p) => ({
     id: p?._id,
     title: p?.title,
@@ -94,7 +94,7 @@ const checkout = () => {
     category: p?.category?.name,
     subcategory: p?.subcategory?.name,
   }));
-  console.log(productData);
+
 
   const [shippings, setShippings] = useState(null);
   const [shippingCost, setShippingCost] = useState("70");
@@ -105,7 +105,7 @@ const checkout = () => {
 
   const getShippings = async () => {
     const ships = await axios.get("/api/admin/shipping/getAll");
-    // console.log(ships);
+
     setShippings(ships);
   };
 
@@ -114,11 +114,11 @@ const checkout = () => {
 
   const getPaymentMethods = async () => {
     const pMethods =  await axios.get("/api/admin/payment-methods/getAll");
-    // console.log(pMethods);
+
     setPaymentMethods(pMethods);
   };
   const total = parseInt(subTotal) + parseInt(shippingCost);
-  // console.log(total);
+;
 
   useEffect(() => {
     getUserInfo();
@@ -168,14 +168,14 @@ const checkout = () => {
       
       );
 
-      console.log(response);
+
       dispatch(emptyCart());
       
       router.push("/success");
       setIsLoading(false);
 
     } catch (error) {
-      console.log(error);
+
       toast.error(error.error.message, {
         position: "top-right",
         autoClose: 5000,
@@ -398,7 +398,7 @@ const checkout = () => {
                     <tbody>
                       {cartProducts?.map((cartProduct) => (
                         <CartProduct
-                          key={cartProduct?.id}
+                          key={cartProduct?._id}
                           cartProduct={cartProduct}
                         />
                       ))}

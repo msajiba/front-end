@@ -11,7 +11,7 @@ const router = createRouter().use(verifyTokenAndAdmin);
 router.post(async (req, res) => {
   try {
     const { description,image } = req.body;
-    // console.log(description, image);
+    
     db.connectDb();
     await new Slider({ description, image}).save();
 

@@ -15,7 +15,7 @@ const VerifyAccount = () => {
   const [buttonText, setButtonText] = useState("Submit Verification Code");
   const [timeLeft, setTimeLeft] = useState(5 * 60); // 5 minutes in seconds
   const token = useSelector((state) => state.user.signupToken);
-  // console.log(token);
+
   const email = token ? jwt(token).email : "";
   const router = useRouter();
 
@@ -36,7 +36,7 @@ const VerifyAccount = () => {
       timer.stop();
     };
   });
-// console.log(number);
+
   const minutes = Math.floor(timeLeft / 60);
   const seconds = timeLeft % 60;
   const formattedTime = `${minutes.toString().padStart(2, "0")}:${seconds

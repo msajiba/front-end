@@ -8,8 +8,7 @@ import ReactMarkdown from "react-markdown";
 const SingleBlog = ({ blog, relatedBlogs ,blogCats}) => {
   const router = useRouter();
   const { slug } = router.query;
-  console.log('slug', slug);
-  console.log(" BlogCats", relatedBlogs);
+  
   const bl = blog?.blog;
   const htmlContent = bl?.content;
   return (
@@ -105,7 +104,7 @@ const SingleBlog = ({ blog, relatedBlogs ,blogCats}) => {
                   {/* End .widget-title */}
                   <ul>
                   {blogCats?.subBlogs?.map((cat)=>(
-                      <li key={cat?.id}>
+                      <li key={cat?._id}>
                       <a href={`/blogs/category/${cat?.slug}`}>
                         {cat?.title}
                       </a>
@@ -197,7 +196,7 @@ export default SingleBlog;
 
 export async function getServerSideProps(context) {
   const { slug } = context.query;
-  console.log("slug",slug);
+  
   const blog = await getData(
     `/api/admin/blog/find?slug=${slug}`
   );

@@ -23,13 +23,13 @@ export default function App({ Component, pageProps }) {
       `/api/admin/siteinfo/find`
     );
     setSiteInfo(siteinfo);
-    // console.log(siteinfo);
+
     
   }
   useEffect(()=>{
     getSiteInfo();
   },[])
-  // console.log(siteInfo);
+  
   return(
     <>
 

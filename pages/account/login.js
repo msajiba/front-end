@@ -50,7 +50,7 @@ const Login = () => {
         emailId,
         password,
       });
-      console.log(res);
+
       dispatch(loginSuccess(res.data.user));
       dispatch(jwtSuccess(res.data.token));
       dispatch(providerSuccess("email-password"));

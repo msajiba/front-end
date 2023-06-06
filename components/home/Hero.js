@@ -15,7 +15,7 @@ const Hero = ({mainSlider}) => {
   useEffect(() => {
     fetchCategories();
   }, []);
-console.log('categories', categories);
+
   return (
     <div className="intro-section">
       <div className="container mt-2">

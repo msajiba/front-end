@@ -34,8 +34,6 @@ const MobileMenuContainer = ({ showMenu, menuCloseHandler }) => {
       slug: p?.attributes?.slug,
       url: p?.attributes?.image?.data?.[0]?.attributes?.url,
     }));
-    console.log(data);
-    console.log("search", productData);
     setProducts(productData);
   };
   const filterChangeHandler = (e) => {
@@ -50,8 +48,6 @@ const MobileMenuContainer = ({ showMenu, menuCloseHandler }) => {
       setFilterData(newFilter);
     }
   };
-
-  console.log("filter", filterData);
 
   const clearInputHandler = () => {
     setQuery("");
@@ -112,7 +108,7 @@ const MobileMenuContainer = ({ showMenu, menuCloseHandler }) => {
               >
                 {filterData?.map((p) => (
                   <li
-                    key={p?.id}
+                    key={p?._id}
                     className="megamenu-container"
                     // onClick={() => {
                     //   showMenuHandler();
@@ -183,24 +179,23 @@ const MobileMenuContainer = ({ showMenu, menuCloseHandler }) => {
             <nav className="mobile-nav">
               <ul className="mobile-menu">
                 {categories?.map((c) => (
-                  <li key={c?.id} className="active" onClick={showMenuHandler}>
-                    <Link href={`/category/${c?.attributes?.slug}`}  onClick={showMenuHandler}>
+                  <li key={c?._id} className="active" onClick={showMenuHandler}>
+                    <Link
+                      href={`/category/${c?.attributes?.slug}`}
+                      onClick={showMenuHandler}
+                    >
                       {c?.attributes?.name}
                     </Link>
                     {c?.attributes?.sub_categories?.data?.length > 0 && (
                       <ul style={{ display: "block" }}>
                         {c?.attributes?.sub_categories?.data?.map((sub) => (
                           <Link
-                          key={sub?.id}  
-                              href={`/subcategory/${sub?.attributes?.slug}`}
-                              onClick={showMenuHandler}
-                            >
-                          <li>
-
-
-                              {sub?.attributes?.name}
-                          </li>
-                            </Link>
+                            key={sub?._id}
+                            href={`/subcategory/${sub?.attributes?.slug}`}
+                            onClick={showMenuHandler}
+                          >
+                            <li>{sub?.attributes?.name}</li>
+                          </Link>
                         ))}
                       </ul>
                     )}

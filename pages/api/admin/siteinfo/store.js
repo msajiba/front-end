@@ -10,7 +10,7 @@ const router = createRouter().use(verifyTokenAndAdmin);
 router.post(async (req, res) => {
   try {
     const {logo, title,phone,email,address, description } = req.body;
-    // console.log(description, image);
+  
     db.connectDb();
     await new Siteinfo({logo, title,phone,email,address, description}).save();
 

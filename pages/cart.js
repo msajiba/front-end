@@ -8,16 +8,15 @@ import { useSelector } from "react-redux";
 
 const cart = () => {
   const cartProducts = useSelector((state) => state.cart.cartItems);
+
   const [shippings, setShippings] = useState(null);
   const [shippingCost, setShippingCost] = useState(70);
-
 
   const subTotal = useMemo(() => {
     return cartProducts.reduce((total, val) => total + val.price, 0);
   }, [cartProducts]);
   const getShippings = async () => {
     const ships = await fetchDataFromApi("/api/shippings?populate=*");
-    // console.log(ships);
     setShippings(ships);
   };
   useEffect(() => {
@@ -25,7 +24,7 @@ const cart = () => {
   }, []);
 
   const total = parseInt(subTotal) + parseInt(shippingCost);
-  // console.log(total);
+
 
   return (
     <main className="main">
@@ -76,7 +75,7 @@ const cart = () => {
                   <tbody>
                     {cartProducts?.map((cartProduct) => (
                       <CartItem
-                        key={cartProduct?.id}
+                        key={cartProduct?._id}
                         cartProduct={cartProduct}
                       />
                     ))}

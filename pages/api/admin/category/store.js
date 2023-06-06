@@ -10,7 +10,7 @@ const router = createRouter().use(verifyTokenAndAdmin);
 router.post(async (req, res) => {
   try {
     const { name,image } = req.body;
-    console.log(name, image);
+
     db.connectDb();
     const test = await Category.findOne({ name });
     if (test) {

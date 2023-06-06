@@ -5,7 +5,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux';
 
 const ProductCard = ({data, showToastMsg}) => {
-  //  console.log('data', data);
+
     const dispatch = useDispatch();
   return (
     <div className="product d-flex flex-column overflow-hidden">

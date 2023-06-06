@@ -1,49 +1,39 @@
 import CartProduct from "@/components/checkout/CartProduct";
 import SuccessProduct from "@/components/checkout/SuccessProduct";
-import { emptyCart } from "@/store/cartSlice";
-import { fetchDataFromApi, postDataToApi } from "@/utils/api";
+
 import withAuth from "@/utils/restrict";
-import { STRAPI_API_TOKEN } from "@/utils/urls";
 import axios from "axios";
 import React, { useEffect, useMemo, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Success = () => {
-  const [profileInfo, setProfileInfo] = useState(null);
   const user = useSelector((state) => state.user.currentUser);
-  const provider = useSelector((state)=>state.user.provider);
+  const provider = useSelector((state) => state.user.provider);
   const jwt = useSelector((state) => state.user.jwt);
   const [order, setOrder] = useState(null);
 
   const geOrderInfo = async () => {
-    if(provider === "email-password"){
-      const order = await axios.post("/api/admin/order/findLatest",
-      {
-        'user_id_no':user?._id
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          token: `Bearer ${jwt}`,
-        }, 
-      });
-      console.log(order)
-    setOrder(order);
+    if (provider === "email-password") {
+      const order = await axios.post(
+        "/api/admin/order/findLatest",
+        {
+          user_id_no: user?._id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            token: `Bearer ${jwt}`,
+          },
+        }
+      );
 
+      setOrder(order);
     }
-    // else{
-    //   const order = await fetchDataFromApi(
-    //     `/api/orders?populate=*&[filters][user_id_no][$eq]=${user?.uid}&sort=id:desc&?pagination[page]=1&pagination[pageSize]=1`
-    //   );
-    //   setOrder(order);
-    // }
-
-    console.log(order);
   };
   useEffect(() => {
     geOrderInfo();
-  },[]);
+  }, [user?._id]);
 
   if (!user) {
     router.push("/account/login");
@@ -74,12 +64,16 @@ const Success = () => {
                   <div className="row">
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}> Name</label>
-                      <p style={{color:"black"}}>{order?.data?.order?.name}</p>
+                      <p style={{ color: "black" }}>
+                        {order?.data?.order?.name}
+                      </p>
                     </div>
                     {/* End .col-sm-6 */}
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}>Email</label>
-                      <p style={{color:"black"}}>{order?.data?.order?.email}</p>
+                      <p style={{ color: "black" }}>
+                        {order?.data?.order?.email}
+                      </p>
                     </div>
                     {/* End .col-sm-6 */}
                   </div>
@@ -87,12 +81,16 @@ const Success = () => {
                   <div className="row">
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}>Phone No</label>
-                      <p style={{color:"black"}}>{order?.data?.order?.phone}</p>
+                      <p style={{ color: "black" }}>
+                        {order?.data?.order?.phone}
+                      </p>
                     </div>
                     {/* End .col-sm-6 */}
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}>Street address </label>
-                      <p style={{color:"black"}}>{order?.data?.order?.address}</p>
+                      <p style={{ color: "black" }}>
+                        {order?.data?.order?.address}
+                      </p>
                     </div>
                     {/* End .col-sm-6 */}
                   </div>
@@ -100,7 +98,7 @@ const Success = () => {
                   <div className="row">
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}>City </label>
-                      <p style={{color:"black"}}>
+                      <p style={{ color: "black" }}>
                         {order?.data?.order?.city}-
                         {order?.data?.order?.post_code}
                       </p>
@@ -108,7 +106,9 @@ const Success = () => {
                     {/* End .col-sm-6 */}
                     <div className="col-sm-6">
                       <label style={{ fontWeight: 600 }}>Country</label>
-                      <p style={{color:"black"}}>{order?.data?.order?.country}</p>
+                      <p style={{ color: "black" }}>
+                        {order?.data?.order?.country}
+                      </p>
                     </div>
                     {/* End .col-sm-6 */}
                   </div>
@@ -128,14 +128,12 @@ const Success = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {order?.data?.order?.products?.map(
-                          (cartProduct) => (
-                            <SuccessProduct
-                              key={cartProduct?.id}
-                              cartProduct={cartProduct}
-                            />
-                          )
-                        )}
+                        {order?.data?.order?.products?.map((cartProduct) => (
+                          <SuccessProduct
+                            key={cartProduct?._id}
+                            cartProduct={cartProduct}
+                          />
+                        ))}
 
                         <tr className="summary-subtotal">
                           <td>Subtotal:</td>
@@ -148,9 +146,7 @@ const Success = () => {
                           <td>Shipping:</td>
                           <td></td>
                           <td></td>
-                          <td>
-                            {order?.data?.order?.shipping_cost} BDT
-                          </td>
+                          <td>{order?.data?.order?.shipping_cost} BDT</td>
                         </tr>
                         <tr className="summary-total">
                           <td>Total:</td>

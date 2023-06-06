@@ -8,15 +8,14 @@ import Search from "./Search";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase.config";
 import { toast, ToastContainer } from "react-toastify";
-import { fetchDataFromApi, getData } from "@/utils/api";
 import { useRouter } from "next/router";
 import { FiUserPlus } from "react-icons/fi";
 import { FiUserCheck } from "react-icons/fi";
-import { BiUserPin } from "react-icons/bi";
+
 import axios from "axios";
 
 const Header = ({ siteInfo }) => {
-  // console.log(siteInfo);
+  
   const router = useRouter();
   const user = useSelector((state) => state.user.currentUser);
   const provider = useSelector((state) => state.user.provider);
@@ -33,7 +32,7 @@ const Header = ({ siteInfo }) => {
 
   //menu tab
   const [tab, setTab] = useState("category");
-  // console.log(tab);
+  
 
   // mobile menu
   const [closeMenu, setCloseMenu] = useState(false);
@@ -46,12 +45,12 @@ const Header = ({ siteInfo }) => {
     const {data} = await axios.get("/api/admin/category/getAll");
     setCategories(data);
   };
-  // console.log(categories);
+  
   useEffect(() => {
     fetchCategories();
   }, []);
 
-  // console.log('sub-categories', categories);
+  
 
   const [filterData, setFilterData] = useState([]);
   const [query, setQuery] = useState("");
@@ -60,15 +59,14 @@ const Header = ({ siteInfo }) => {
 
   const fetchProducts = async () => {
     const { data } = await axios.get("/api/admin/product/getAll");
-    // console.log(data);
+    
     const productData = data.products.map((p) => ({
       title: p?.title,
       price: p?.price,
       slug: p?.slug,
       url: p?.image,
     }));
-    // console.log(data);
-    // console.log("search", productData);
+
     setProducts(productData);
   };
   const filterChangeHandler = (e) => {
@@ -84,7 +82,7 @@ const Header = ({ siteInfo }) => {
     }
   };
 
-  // console.log("filter", filterData);
+
 
   const clearInputHandler = () => {
     setQuery("");
@@ -418,7 +416,7 @@ const Header = ({ siteInfo }) => {
                 >
                   {filterData?.map((p) => (
                     <li
-                      key={p?.id}
+                      key={p?._id}
                       className="megamenu-container"
                       onClick={() => {
                         showMenuHandler();
@@ -498,7 +496,7 @@ const Header = ({ siteInfo }) => {
                   <ul className="mobile-menu">
                     {categories?.categories?.map((c) => (
                       <li
-                        key={c?.id}
+                        key={c?._id}
                         className="active"
                         onClick={showMenuHandler}
                       >
@@ -511,7 +509,7 @@ const Header = ({ siteInfo }) => {
                         {c?.subCategories?.length > 0 && (
                           <ul style={{ display: "block" }}>
                             {c?.subCategories?.map((sub) => (
-                              <li key={sub?.id}>
+                              <li key={sub?._id}>
                                 <Link
                                   href={`/subcategory/${sub?.slug}`}
                                   onClick={showMenuHandler}

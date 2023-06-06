@@ -25,7 +25,7 @@ const ForgetPassword = () => {
           dispatch(forgotPasswordSuccess(res.data.token))
           router.push("/account/reset-password");
 
-          console.log(res);
+
         } catch (error) {
           console.log(error.response.data.error);
           toast.success(error.response.data.error, {

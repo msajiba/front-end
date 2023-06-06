@@ -3,7 +3,7 @@ import Link from 'next/link'
 import React from 'react'
 
 const PageArticles = ({blog}) => {
-  console.log('pageArticles',blog);
+  
   return (
     <article className="entry entry-list">
     <div className="row align-items-center">

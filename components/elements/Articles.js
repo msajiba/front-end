@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react'
 
 const Articles = ({blog}) => {
-    console.log('blog', blog);
+
   return (
     <article className="entry blog-overlay p-2">
     <figure className="entry-media">

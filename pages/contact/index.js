@@ -8,7 +8,7 @@ const Contact = () => {
       `/api/admin/siteinfo/find`
     );
     setSiteInfo(siteinfo);
-    console.log(siteinfo);
+    
     
   }
   useEffect(()=>{

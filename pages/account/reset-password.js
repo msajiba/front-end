@@ -13,9 +13,9 @@ const ResetPassword = () => {
     const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [number, setNumber] = useState('');
     const forgotPassToken = useSelector((state) => state.user.forgotPassToken);
-    // console.log(forgotPassToken);
 
-    console.log(passwordConfirmation);
+
+
     const router = useRouter();
     const resetPassword = async () => {
         try {
@@ -26,7 +26,7 @@ const ResetPassword = () => {
      
           });
 
-          // console.log(res.data);
+
       router.push("/account/login");
 
         } catch (error) {

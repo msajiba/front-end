@@ -4,9 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 const BlogCategory = ({ blogCategories, blogCats, slug }) => {
-  console.log("blog cat", blogCategories);
-  console.log("blogs", blogCats);
-  // console.log('slug', slug);blogCats
+
   return (
     <main className="main px-5">
       <div
@@ -115,7 +113,7 @@ const BlogCategory = ({ blogCategories, blogCats, slug }) => {
                   {/* End .widget-title */}
                   <ul>
                     {blogCategories?.subBlogs?.map((cat) => (
-                      <li key={cat?.id}>
+                      <li key={cat?._id}>
                         <a href={`/blogs/category/${cat?.slug}`}>
                           {cat?.title}
                         </a>

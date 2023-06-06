@@ -37,7 +37,6 @@ const index = () => {
   },[])
   
   
-  console.log('profile',userInfo);
 
   const dispatch = useDispatch();
 

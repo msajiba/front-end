@@ -12,7 +12,7 @@ const AccountDetails = () => {
   const [userInfo, setUserInfo] = useState(null);
   const router = useRouter();
   const user = useSelector((state) => state.user.currentUser);
-  // console.log(user);
+
   const jwt = useSelector((state) => state.user.jwt);
   const provider = useSelector((state)=>state.user.provider);
   const getUserInfo = async ()=>{
@@ -28,7 +28,7 @@ const AccountDetails = () => {
         token: `Bearer ${jwt}`,
       },
     });
-    console.log('details',userInfo);
+
       setUserInfo(userInfo);
   
   }
@@ -36,7 +36,7 @@ const AccountDetails = () => {
     getUserInfo();
   },[])
 
-  console.log('profile',userInfo);
+
 
 
   if (!user) {

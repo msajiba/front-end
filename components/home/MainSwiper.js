@@ -7,15 +7,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
-import { fetchDataFromApi } from "@/utils/api";
 
-
-export default function MainSwiper({mainSlider}) {
-
-console.log('slider', mainSlider);
+export default function MainSwiper({ mainSlider }) {
   return (
     <>
       <Swiper
@@ -35,7 +30,7 @@ console.log('slider', mainSlider);
       >
         {mainSlider?.sliders?.map((slider) => (
           <SwiperSlide key={slider?._id}>
-            <img style={{width:'100%'}} src={slider?.image} alt="" />
+            <img style={{ width: "100%" }} src={slider?.image} alt="" />
           </SwiperSlide>
         ))}
       </Swiper>

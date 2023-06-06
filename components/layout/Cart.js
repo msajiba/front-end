@@ -9,7 +9,6 @@ const Cart = () => {
     const subTotal = useMemo(()=>{
       return cartProducts.reduce((total, val)=>total+val.price,0)
     },[cartProducts])
-    console.log(cartProducts);
   return (
     <div className="dropdown cart-dropdown">
     <Link
@@ -37,7 +36,7 @@ const Cart = () => {
     >
       <div className="dropdown-cart-products">
         {cartProducts?.map((product)=>
-        <CartProduct key={product?.id} cartProduct = {product}/>
+        <CartProduct key={product?._id} cartProduct = {product}/>
         )}
         {/* End .product */}
 
