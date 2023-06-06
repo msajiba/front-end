@@ -33,7 +33,7 @@ const Success = () => {
   };
   useEffect(() => {
     geOrderInfo();
-  }, [user?._id]);
+  }, [user]);
 
   if (!user) {
     router.push("/account/login");
