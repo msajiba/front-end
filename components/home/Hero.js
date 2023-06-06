@@ -9,7 +9,7 @@ const Hero = ({mainSlider}) => {
   const [categories, setCategories] = useState(null);
 
   const fetchCategories = async () => {
-    const {data} = await axios.get("http://localhost:3000/api/admin/category/getAll");
+    const {data} = await axios.get("https://front-end-msajiba.vercel.app/api/admin/category/getAll");
     setCategories(data);
   };
   useEffect(() => {

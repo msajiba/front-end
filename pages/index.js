@@ -18,10 +18,6 @@ import Blog from "@/components/home/Blog";
 
 export default function Home({ products,categories ,blogs,mainSlider,latestProducts,discountedProducts,bestDealProducts}) {
 
-
-  console.log("================>", blogs);
-  console.log("================>", products);
-
 const showToastMessage =(data)=>{
   toast.success(data.msg, {
     position: "top-right",
