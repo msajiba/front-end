@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import jwt from 'jwt-decode';
+import jwt from "jwt-decode";
 import Timer from "@/components/auth/Timer";
 import axios from "axios";
 
@@ -43,12 +43,11 @@ const VerifyAccount = () => {
     .toString()
     .padStart(2, "0")}`;
 
-    
   const submitHandler = (e) => {
     e.preventDefault();
     setButtonText("Wait...");
     axios
-      .post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/account-verification`, {
+      .post(`/api/auth/account-verification`, {
         token,
         number,
       })
@@ -58,13 +57,13 @@ const VerifyAccount = () => {
         setShow(false);
         setNumber("");
         router.push("/account/login");
-        toast.success(response.data.message);
+        toast.success(response?.data?.message);
       })
       .catch(function (error) {
         //   console.log('error', error.response.data);
         setButtonText("Submit Verification Code");
 
-        toast.error(error.response.data.error);
+        toast.error(error?.response?.data?.error);
       });
   };
 
@@ -79,15 +78,17 @@ const VerifyAccount = () => {
             justifyContent: "center",
             flexDirection: "column",
             alignItems: "center",
+            padding: "80px",
           }}
         >
           <h3>Activate Account</h3>
 
-          <h4>
+          <h5>
             We sent a verification code to your email address{" "}
-            <span style={{ color: "crimson" }}>{email}</span> . It may take a
+        
+            <span style={{ color: "crimson", }}>{email}</span> It may take a
             few seconds for the code to arrive.{" "}
-          </h4>
+          </h5>
           <div>
             {/* <input value={number} onChange={(e)=>{setNumber(e.target.value)}} />  */}
 
@@ -116,10 +117,7 @@ const VerifyAccount = () => {
           {!show && (
             <Link href="/login">
               {/* <button className="btn btn-sm btn-warning">Login</button> */}
-              <button 
-              className="btn btn-outline-primary-2">
-                Signin
-              </button>
+              <button className="btn btn-outline-primary-2">Signin</button>
             </Link>
           )}
           <div>
